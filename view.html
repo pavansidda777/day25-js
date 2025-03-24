@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         .parent{
+      display: grid;
+      grid-template-columns: 22% 22% 22% 22%;
+      gap: 2%;
+      margin-left: 4%;
+      margin-top: 2%;
+     }
+     .child{
+     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;;
+      /* border: 2px solid; */
+      border-radius: 10px;
+      height: 50vh;
+      text-align: center;
+     }
+     
+     img{
+      width:50%;
+      height:25vh;
+      margin-top: 2%;
+      }
+
+/* media queries */
+/* For screens up to 1024px (Tablets & Small Laptops) */
+@media (max-width: 1024px) {
+    .parent {
+        grid-template-columns: 30% 30% 30%;
+    }
+}
+
+/* For screens up to 768px (Tablets & Large Phones) */
+@media (max-width: 768px) {
+    .parent {
+        grid-template-columns: 45% 45%;
+    }
+
+    .child {
+        height: 40vh;
+    }
+
+    img {
+        height: 20vh;
+    }
+}
+
+/* For screens up to 480px (Mobile Phones) */
+@media (max-width: 480px) {
+    .parent {
+        grid-template-columns: 90%;
+        margin-left: 5%;
+    }
+
+    .child {
+        height: 40vh;
+    }
+
+    img {
+        height: 14vh;
+    }
+}
+
+
+
+
+    </style>
+
+</head>
+<body>
+    <h1 style="text-align: center;color: rgb(8, 111, 120);">cart details</h1>
+    <script>
+        var data1=JSON.parse(localStorage.getItem("Addtocart"))
+        var container=document.createElement("div")
+        console.log(container)
+        container.classList.add("parent")
+          let array=data1.map(function(val){
+          var child=document.createElement("div")
+              child.classList.add("child")
+             var img=document.createElement("img")
+             var title=document.createElement("h4")
+             var price=document.createElement("p")
+           
+            var btn1=document.createElement("button")
+            btn1.style.background="red"
+            btn1.classList.add("btn1")
+
+
+
+
+       img.src=val.image
+       title.innerText=val.title
+       price.innerText="price: "+val.price
+    //    btn.innerText="Add To Cart"
+       btn1.innerText="Remove"
+
+       
+       child.append(img,title,price,btn1)
+       container.append(child)
+       btn1.addEventListener("click",function(){
+       child.remove()
+           })
+
+       
+        })
+ 
+   
+       document.body.append(container)
+    </script>
+    
+</body>
+</html>
